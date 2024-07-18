@@ -2,10 +2,11 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Card, Icon } from '@rneui/themed';
-import { width } from '../constants/Styles';
+import { IconFonts, width } from '../constants/Styles';
 import * as Linking from 'expo-linking';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBookmarkAsync } from '../redux-store/bookmarks/bookmarksSlice';
+import { Colors } from '../constants/Colors';
 
 const JobCard = ( { job } ) => {
   const router = useRouter();
@@ -36,27 +37,32 @@ const JobCard = ( { job } ) => {
   };
 
   return (
-    <TouchableOpacity activeOpacity={0.7} onPress={ handleNavigation } style={ styles.card }>
+    <TouchableOpacity activeOpacity={ 0.7 } onPress={ handleNavigation } style={ styles.card }>
       <View style={ styles.cardContent }>
         <Text style={ styles.title }>{ job.title }</Text>
         <Text>{ job.primary_details.Place }</Text>
         <Text>{ job.primary_details.Salary }</Text>
         <View style={ styles.contactInfo }>
           <TouchableOpacity onPress={ handleWhatsAppNavigation }>
-            <Icon name="whatsapp" type="font-awesome" size={ 20 } color="#25D366" />
+            <Icon name='whatsapp' type='font-awesome' size={ 20 } color='#25D366' />
           </TouchableOpacity>
           <Text style={ styles.contactLink } onPress={ handleWhatsAppNavigation }>
             WhatsApp
           </Text>
           <TouchableOpacity onPress={ handleContactNavigation }>
-            <Icon name="phone" type="font-awesome" size={ 20 } color="#007AFF" />
+            <Icon name='phone' type='font-awesome' size={ 20 } color='#007AFF' />
           </TouchableOpacity>
           <Text style={ styles.contactLink } onPress={ handleContactNavigation }>
             { job.custom_link }
           </Text>
         </View>
       </View>
-      <Icon name='bookmark-outline' type='material-community' color='gray' />
+
+      {/* Bookmark Icon */ }
+      <TouchableOpacity onPress={ handleBookmarkToggle }>
+        <Icon name={ isBookmarked ? 'bookmark' : 'bookmark-o' } type='font-awesome' color={ isBookmarked ? '#ffc100' : Colors.light.icon } size={IconFonts.lg} />
+      </TouchableOpacity>
+      
     </TouchableOpacity>
   );
 };

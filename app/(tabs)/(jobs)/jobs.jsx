@@ -5,11 +5,13 @@ import { Colors } from '../../../constants/Colors';
 import { useJobsQuery } from '../../../hooks/useJobsQuery';
 import JobCard from '../../../components/JobCard';
 import JobSearchBar from '../../../components/JobSearchBar';
+import { useDispatch } from 'react-redux';
 import { loadBookmarksAsync } from '../../../redux-store/bookmarks/bookmarksSlice';
 
 const JobsScreen = () => {
   const [searchQuery, setSearchQuery] = useState( '' );
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useJobsQuery();
+  const dispatch = useDispatch();
   
   useEffect( () => {
     // load bookmarked jobs data from storage
