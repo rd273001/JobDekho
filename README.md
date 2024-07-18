@@ -6,14 +6,18 @@ JobDekho is a mobile application built with Expo React Native that helps users f
 
 ## Features
 
+* **Job Listing:** Browse through a comprehensive list of job openings across various industries and locations.
 * **Job Details:** View detailed information about each job listing, including job description, company profile, and application instructions.
 * **Save Jobs:** Save jobs you're interested in for later review.
+* **Contact Information:** Access contact details for employers, including phone numbers and WhatsApp links, for direct communication.
 
 ## Technologies Used
 
 * **React Native** [![React Native](https://img.shields.io/badge/React_Native-a900ff?logo=react&logoColor=61dafb&labelColor=2e2e2e)](https://expo.dev/)
 * **Expo** [![Expo](https://img.shields.io/badge/Expo-a900ff?logo=expo&logoColor=61dafb&labelColor=2e2e2e)](https://expo.dev/)
 * **React** [![React](https://img.shields.io/badge/React-a900ff?logo=react&logoColor=61dafb&labelColor=2e2e2e)](https://reactjs.org/)
+* **Redux Toolkit** [![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-a900ff?logo=redux&logoColor=61dafb&labelColor=2e2e2e)](https://redux-toolkit.js.org/)
+* **TanStack React Query** [![TanStack React Query](https://img.shields.io/badge/TanStack%20React%20Query-a900ff?logo=react&logoColor=61dafb&labelColor=2e2e2e)](https://tanstack.com/query/v4/)
 * **@rneui/base & @rneui/themed** [![React Native Elements](https://img.shields.io/badge/React_Native_Elements-a900ff?logo=react&logoColor=61dafb&labelColor=2e2e2e)](https://reactnativeelements.com/)
 * **expo-constants** [![Expo Constants](https://img.shields.io/badge/Expo%20Constants-a900ff?logo=expo&logoColor=61dafb&labelColor=2e2e2e)](https://docs.expo.dev/versions/latest/sdk/constants/)
 * **expo-font** [![Expo Font](https://img.shields.io/badge/Expo%20Font-a900ff?logo=expo&logoColor=61dafb&labelColor=2e2e2e)](https://docs.expo.dev/versions/latest/sdk/font/)

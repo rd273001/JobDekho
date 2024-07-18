@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "JobDekho",
-    "slug": "JobDekho",
+    "name": "jobdekho",
+    "slug": "jobdekho",
     "scheme": "jobdekho",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0232f51e-ba02-4c9b-a45f-e4b9203cdfe5"
+      }
+    },
+    "owner": "ravi-dubey"
   }
 }
