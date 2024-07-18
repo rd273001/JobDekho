@@ -1,3 +1,4 @@
+import Divider from "@rneui/themed/dist/Divider";
 import { Dimensions } from "react-native";
 export const { width, height } = Dimensions.get( 'screen' );
 
@@ -42,3 +43,6 @@ export const CommonStyles = {
     justifyContent: 'center'
   },
 };
+
+// For footers, headers, and dividers between components for vertical gap
+export const Seperator = ( { size, color } ) => <Divider width={ size ? width * size : width * 0.035 } color={ color ? color : 'transparent' } />;

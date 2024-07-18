@@ -11,7 +11,6 @@ export const useJobsQuery = () => {
   return useInfiniteQuery( {
     queryKey: ['jobs'],
     queryFn: fetchJobs,
-    maxPages: 10,
     getNextPageParam: ( lastPage, pages ) => {
       if ( lastPage.results.length ) {
         return pages.length + 1;
