@@ -33,7 +33,7 @@ const JobsScreen = () => {
         renderItem={ ( { item } ) => <JobCard job={ item } /> }
         ListHeaderComponent={ <Seperator /> }
         keyExtractor={ ( item ) => item.id.toString() }
-        ItemSeparatorComponent={ <Seperator /> }
+        ItemSeparatorComponent={ <Seperator size={ 0.04 } /> }
         onEndReached={ () => {
           if ( hasNextPage ) fetchNextPage();
         } }

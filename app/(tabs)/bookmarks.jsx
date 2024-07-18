@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
-import { Text, StyleSheet, ScrollView } from 'react-native';
+import React from 'react';
+import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { Fonts, width } from '../../constants/Styles';
+import { Fonts, Seperator, width } from '../../constants/Styles';
 import { useJobsQuery } from '../../hooks/useJobsQuery';
 import JobCard from '../../components/JobCard';
 import { Colors } from '../../constants/Colors';
-import { useDispatch } from 'react-redux';
-import { loadBookmarksAsync } from '../../redux-store/bookmarks/bookmarksSlice';
 
 const BookmarksScreen = () => {
+  // using latest updated data
   const bookmarks = useSelector( ( state ) => state.bookmarks.bookmarkedJobs );
   const { data, isLoading, error } = useJobsQuery();
-  const dispatch = useDispatch();
-
-  useEffect( () => {
-    // load bookmarked jobs data from storage
-    dispatch( loadBookmarksAsync() );
-  }, [] );
 
   if ( isLoading ) {
     return <ActivityIndicator size='large' />;
@@ -32,7 +25,10 @@ const BookmarksScreen = () => {
     <ScrollView contentContainerStyle={ styles.container }>
       { bookmarkedJobs.length > 0 ? (
         bookmarkedJobs.map( ( job ) => (
-          <JobCard key={ job.id } job={ job } />
+          <View key={job.id}>
+          <JobCard job={ job } />
+            <Seperator />
+            </View>
         ) )
       ) : (
         <Text style={ styles.text }>No bookmarks added yet.</Text>
@@ -43,10 +39,9 @@ const BookmarksScreen = () => {
 
 const styles = StyleSheet.create( {
   container: {
-    flex: 1,
     flexGrow: 1,
     backgroundColor: Colors.PRIMARY_BACKGROUND,
-    paddingVertical: width * 0.035
+    paddingTop: width * 0.035
   },
   text: {
     marginHorizontal: width * 0.03,

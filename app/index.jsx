@@ -5,7 +5,7 @@ const Index = () => {
   return (
     <>
       <Stack.Screen options={ { headerShown: false } } />
-      <Redirect href="/jobs" />
+      <Redirect href='/jobs' />
     </>
   );
 };

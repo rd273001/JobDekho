@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Colors } from '../../constants/Colors';
 import { Fonts, IconFonts, width } from '../../constants/Styles';
 import * as Linking from 'expo-linking';
@@ -7,18 +7,18 @@ import { useJobsQuery } from '../../hooks/useJobsQuery';
 import { useDispatch, useSelector } from 'react-redux';
 
 const JobDetailsScreen = () => {
-	// Extract job ID from search params
+  // Extract job ID from search params
   const { id } = useLocalSearchParams();
   const dispatch = useDispatch();
   const bookmarks = useSelector( state => state.bookmarks.bookmarkedJobs );
   // retrieve jobs data
   const { data, isLoading, error } = useJobsQuery();
 
-	if (isLoading) {
+  if ( isLoading ) {
     return <ActivityIndicator size={ IconFonts.xl4 } />;
   }
 
-  if (error) {
+  if ( error ) {
     return <Text>Error loading job details.</Text>;
   }
   
@@ -28,7 +28,7 @@ const JobDetailsScreen = () => {
   // when job is not found
   if ( !job ) return <Text>Job not found!</Text>;
 
-  const isBookmarked = bookmarks.includes(job.id);
+  const isBookmarked = bookmarks.includes( job.id );
 
   // open WhatsApp link
   const handleWhatsAppNavigation = () => {
@@ -40,27 +40,27 @@ const JobDetailsScreen = () => {
     Linking.openURL( job.contact_preference.whatsapp_link );
   };
 
-	return (
-		<View style={styles.container}>
-			<Stack.Screen options={{ headerTitle: 'Job Details' }} />
+  return (
+    <ScrollView contentContainerStyle={ styles.container }>
+      <Stack.Screen options={ { headerTitle: 'Job Details' } } />
 
-			<Text style={styles.title}>{job?.title}</Text>
-			<Text style={styles.detail}>Place: {job.primary_details?.Place}</Text>
-			<Text style={styles.detail}>Salary: {job.primary_details?.Salary}</Text>
-			<Text style={styles.detail}>
-				Experience: {job.primary_details?.Experience}
-			</Text>
-			<Text style={styles.detail}>
-				Contact: {job.custom_link?.replace('tel:', '')}
-			</Text>
-			<Text style={styles.detail}>Description: {job?.content}</Text>
-		</View>
-	);
+      <Text style={ styles.title }>{ job?.title }</Text>
+      <Text style={ styles.detail }>Place: { job.primary_details?.Place }</Text>
+      <Text style={ styles.detail }>Salary: { job.primary_details?.Salary }</Text>
+      <Text style={ styles.detail }>
+        Experience: { job.primary_details?.Experience }
+      </Text>
+      <Text style={ styles.detail }>
+        Contact: { job.custom_link?.replace( 'tel:', '' ) }
+      </Text>
+      <Text style={ styles.detail }>Description: { job?.content }</Text>
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create( {
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: Colors.PRIMARY_BACKGROUND,
   },
   title: {
