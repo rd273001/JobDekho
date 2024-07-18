@@ -1,23 +1,27 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import { Icon } from '@rneui/themed';
 import { Colors } from '../../constants/Colors';
+import { Fonts, IconFonts } from '../../constants/Styles';
 
 const TabLayout = () => {
   return (
     <Tabs screenOptions={ {
       tabBarActiveBackgroundColor: Colors.light.background,
       tabBarActiveTintColor: Colors.PRIMARY_LIGHT,
-    }}>
+      tabBarInactiveTintColor: Colors.light.tabIconDefault,
+      tabBarLabelStyle: { marginTop: -Fonts.xs2, fontSize: Fonts.xs2 }
+    } }>
       <Tabs.Screen
-        name='jobs'
+        name='(jobs)'
         options={ {
           tabBarLabel: 'Jobs',
           title: 'Jobs',
+          headerShown: false,
           tabBarIcon: ( { color } ) => (
-            <FontAwesome
-              size={ 28 }
-              style={ { marginBottom: -3 } }
+            <Icon
+              size={ IconFonts.md }
+              type='font-awesome'
               name='suitcase'
               color={ color }
             />
@@ -29,10 +33,11 @@ const TabLayout = () => {
         options={ {
           tabBarLabel: 'Bookmarks',
           title: 'Bookmarks',
+          headerTitleStyle: {fontFamily: 'Roboto-Bold', fontSize: Fonts.md},
           tabBarIcon: ( { color } ) => (
-            <MaterialCommunityIcons
-              size={ 28 }
-              style={ { marginBottom: -3 } }
+            <Icon
+              size={ IconFonts.md }
+              type='material-community'
               name='bookmark-box-multiple-outline'
               color={ color }
             />

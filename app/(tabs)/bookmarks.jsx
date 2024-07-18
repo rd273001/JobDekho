@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-const JobsScreen = () => {
+const BookmarksScreen = () => {
   return (
-    <View style={ styles.container }>
-      <Text style={ styles.title }>Jobs</Text>
+    <View style={styles.container}>
+      <Text>No Bookmarks added yet.</Text>
     </View>
   );
 };
@@ -14,10 +14,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontFamily: 'Roboto-Regular',
-  }
 } );
 
-export default JobsScreen;
+export default BookmarksScreen;

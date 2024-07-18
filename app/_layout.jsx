@@ -1,5 +1,9 @@
+import React from 'react';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router/stack';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const RootLayout = () => {
 
@@ -12,9 +16,11 @@ const RootLayout = () => {
   if ( error ) console.log( error );
 
   return loaded ? (
-    <Stack>
-      <Stack.Screen name='(tabs)' options={ { headerShown: false } } />
-    </Stack>
+    <QueryClientProvider client={ queryClient }>
+      <Stack>
+        <Stack.Screen name='(tabs)' options={ { headerShown: false } } />
+      </Stack>
+    </QueryClientProvider>
   ) : null;
 };
 
