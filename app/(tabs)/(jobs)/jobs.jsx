@@ -1,10 +1,10 @@
+import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { Fonts, IconFonts, Seperator, width } from '../../../constants/Styles';
 import { Colors } from '../../../constants/Colors';
 import { useJobsQuery } from '../../../hooks/useJobsQuery';
 import JobCard from '../../../components/JobCard';
 import JobSearchBar from '../../../components/JobSearchBar';
-import { useState } from 'react';
 import { loadBookmarksAsync } from '../../../redux-store/bookmarks/bookmarksSlice';
 
 const JobsScreen = () => {
