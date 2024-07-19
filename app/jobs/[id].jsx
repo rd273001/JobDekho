@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Colors } from '../../constants/Colors';
 import { Fonts, IconFonts, width } from '../../constants/Styles';
 import * as Linking from 'expo-linking';
@@ -21,7 +21,7 @@ const JobDetailsScreen = () => {
   if ( error ) {
     return <Text>Error loading job details.</Text>;
   }
-  
+
   // find job with matching ID
   const job = data.pages.flatMap( page => page.results ).find( job => String( job.id ) === id );
 

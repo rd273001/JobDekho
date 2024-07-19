@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, ScrollView, View } from 'react-native';
+import { Text, StyleSheet, ScrollView, View, ActivityIndicator } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Fonts, Seperator, width } from '../../constants/Styles';
 import { useJobsQuery } from '../../hooks/useJobsQuery';

@@ -1,10 +1,8 @@
-import { View, Text, Image, Dimensions, StyleSheet } from 'react-native'
+import { Text, Image, StyleSheet } from 'react-native'
 import React from 'react'
 import { Stack } from 'expo-router';
 import { Colors } from '../../../constants/Colors';
-import { Fonts } from '../../../constants/Styles';
-
-const { width } = Dimensions.get( 'screen' );
+import { Fonts, width } from '../../../constants/Styles';
 
 const JobsStackLayout = () => {
   return (
