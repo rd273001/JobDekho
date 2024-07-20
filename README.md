@@ -1,5 +1,9 @@
 # JobDekho - Your Ultimate Job Searching App
 
+## Demo
+
+[App demo video](https://drive.google.com/file/d/1ySrqrUuLMh1ZDma2zdO6GfYpnDaRMM5X/view?usp=drive_link)
+
 ## Overview
 
 JobDekho is a mobile application built with Expo React Native that helps users find their ideal job. It provides a user-friendly interface for searching job listings, and applying for positions.

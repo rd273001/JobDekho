@@ -119,7 +119,7 @@ const styles = StyleSheet.create( {
     fontFamily: 'Roboto-Regular',
   },
   contactLink: {
-    color: '#007AFF',
+    color: 'blue',
     fontFamily: 'Roboto-Regular',
     fontSize: Fonts.md
   },
