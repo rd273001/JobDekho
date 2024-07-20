@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Card, Divider, Icon } from '@rneui/themed';
-import { IconFonts, width } from '../constants/Styles';
+import { Fonts, IconFonts, width } from '../constants/Styles';
 import * as Linking from 'expo-linking';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBookmarkAsync } from '../redux-store/bookmarks/bookmarksSlice';
@@ -39,34 +39,41 @@ const JobCard = ( { job } ) => {
   return (
     <TouchableOpacity activeOpacity={ 0.7 } onPress={ handleNavigation } style={ styles.card }>
       <View style={ styles.cardContent }>
-        <Text numberOfLines={2} style={ styles.title }>{ job.title }</Text>
-        <Divider style={{flex: 1, justifyContent: 'center'}} />
-        <Text style={{marginVertical: 5}}>{ job.primary_details.Place }</Text>
-        <Text style={{marginVertical: 5}}>{ job.primary_details.Salary }</Text>
+        <Text numberOfLines={ 2 } style={ styles.title }>{ job.title }</Text>
+        <Divider style={ { flex: 1, justifyContent: 'center' } } />
+
+        <View style={ styles.flexCenter }>
+          <Icon name='map-marker-outline' type='material-community' size={ IconFonts.sm } color={Colors.light.tabIconDefault} />
+          <Text style={styles.details}>{ job.primary_details.Place }</Text>
+        </View>
+
+        <View style={ styles.flexCenter }>
+          <Icon name='currency-inr' type='material-community' size={ IconFonts.sm } color={ Colors.light.tabIconDefault } />
+          <Text style={styles.details}>{ job.primary_details.Salary.length < 2 ? 'N/A' : job.primary_details.Salary?.replace(/₹/g, '') }</Text>
+        </View>
+
         <View style={ styles.contactInfo }>
-          <TouchableOpacity onPress={ handleWhatsAppNavigation } style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity onPress={ handleWhatsAppNavigation } style={ styles.flexCenter }>
+            <Icon name='whatsapp' type='material-community' size={ IconFonts.sm } color='#25D366' />
             <Text style={ styles.contactLink } onPress={ handleWhatsAppNavigation }>
               WhatsApp
             </Text>
-            <Icon name='whatsapp' type='font-awesome' size={ IconFonts.md } color='#25D366' />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={ handleContactNavigation } style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity onPress={ handleContactNavigation } style={ styles.flexCenter }>
+            <Icon name='phone' type='material-community' size={ IconFonts.sm } color='#007AFF' />
             <Text style={ styles.contactLink } onPress={ handleContactNavigation }>
-              { job?.custom_link?.replace('tel:', '') }
+              { job?.custom_link?.replace( 'tel:', '' ) }
             </Text>
-            <Icon name='phone' type='font-awesome' size={ IconFonts.md } color='#007AFF' />
-            </TouchableOpacity>
-          
+          </TouchableOpacity>
+
           {/* Bookmark Icon */ }
-      <TouchableOpacity onPress={ handleBookmarkToggle }>
-        <Icon name={ isBookmarked ? 'bookmark' : 'bookmark-o' } type='font-awesome' color={ isBookmarked ? '#ffc100' : Colors.light.icon } size={ IconFonts.lg } />
-      </TouchableOpacity>
+          <TouchableOpacity onPress={ handleBookmarkToggle }>
+            <Icon name={ isBookmarked ? 'bookmark' : 'bookmark-outline' } type='material-community' color={ isBookmarked ? '#ffc100' : Colors.light.icon } size={ IconFonts.lg } />
+          </TouchableOpacity>
 
         </View>
-
       </View>
-      
     </TouchableOpacity>
   );
 };
@@ -86,19 +93,28 @@ const styles = StyleSheet.create( {
     flex: 1,
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Medium',
     marginBottom: width * 0.02,
+  },
+  flexCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: width * 0.02,
+    gap: width * 0.01
+  },
+  details: {
+    fontSize: Fonts.sm,
+    fontWeight: '300',
   },
   contactInfo: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-    marginTop: 5
+    marginTop: width * 0.01
   },
   contactLink: {
     color: 'blue',
-    marginRight: width * 0.01
   }
 } );
 

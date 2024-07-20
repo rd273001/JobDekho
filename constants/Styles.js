@@ -14,6 +14,7 @@ export const Fonts = {
 };
 
 export const IconFonts = {
+  sm: width * 0.04,
   md: width * 0.06,
   lg: width * 0.07,
   xl: width * 0.08,
