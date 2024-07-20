@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "jobdekho",
+    "name": "JobDekho",
     "slug": "jobdekho",
     "scheme": "jobdekho",
     "version": "1.0.0",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ravidubey.jobdekho"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -29,6 +30,12 @@
         "projectId": "0232f51e-ba02-4c9b-a45f-e4b9203cdfe5"
       }
     },
-    "owner": "ravi-dubey"
+    "owner": "ravi-dubey",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0232f51e-ba02-4c9b-a45f-e4b9203cdfe5"
+    }
   }
 }
