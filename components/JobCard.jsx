@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Card, Divider, Icon } from '@rneui/themed';
-import { Fonts, IconFonts, width } from '../constants/Styles';
+import { Divider, Icon } from '@rneui/themed';
+import { Fonts, FontStyles, IconFonts, width } from '../constants/Styles';
 import * as Linking from 'expo-linking';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBookmarkAsync } from '../redux-store/bookmarks/bookmarksSlice';
@@ -43,13 +43,13 @@ const JobCard = ( { job } ) => {
         <Divider style={ { flex: 1, justifyContent: 'center' } } />
 
         <View style={ styles.flexCenter }>
-          <Icon name='map-marker-outline' type='material-community' size={ IconFonts.sm } color={Colors.light.tabIconDefault} />
-          <Text style={styles.details}>{ job.primary_details.Place }</Text>
+          <Icon name='map-marker-outline' type='material-community' size={ IconFonts.sm } color={ Colors.light.tabIconDefault } />
+          <Text style={ styles.details }>{ job.primary_details.Place }</Text>
         </View>
 
         <View style={ styles.flexCenter }>
           <Icon name='currency-inr' type='material-community' size={ IconFonts.sm } color={ Colors.light.tabIconDefault } />
-          <Text style={styles.details}>{ job.primary_details.Salary.length < 2 ? 'N/A' : job.primary_details.Salary?.replace(/₹/g, '') }</Text>
+          <Text style={ styles.details }>{ job.primary_details.Salary.length < 2 ? 'N/A' : job.primary_details.Salary?.replace( /₹/g, '' ) }</Text>
         </View>
 
         <View style={ styles.contactInfo }>
@@ -103,8 +103,8 @@ const styles = StyleSheet.create( {
     gap: width * 0.01
   },
   details: {
-    fontSize: Fonts.sm,
-    fontWeight: '300',
+    ...FontStyles.base,
+    fontSize: Fonts.sm
   },
   contactInfo: {
     flex: 1,

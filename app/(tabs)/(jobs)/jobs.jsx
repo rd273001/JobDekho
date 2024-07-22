@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
-import { Fonts, IconFonts, Seperator } from '../../../constants/Styles';
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import { IconFonts, Seperator, width } from '../../../constants/Styles';
 import { Colors } from '../../../constants/Colors';
 import { useJobsQuery } from '../../../hooks/useJobsQuery';
 import JobCard from '../../../components/JobCard';
 import JobSearchBar from '../../../components/JobSearchBar';
 import { useDispatch } from 'react-redux';
 import { loadBookmarksAsync } from '../../../redux-store/bookmarks/bookmarksSlice';
+import Spinner from '../../../components/Spinner';
 
 const JobsScreen = () => {
   const [searchQuery, setSearchQuery] = useState( '' );
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useJobsQuery();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useJobsQuery();
   const dispatch = useDispatch();
   
   useEffect( () => {
@@ -26,8 +27,6 @@ const JobsScreen = () => {
   return (
     <View style={ styles.container }>
       <JobSearchBar searchQuery={ searchQuery } setSearchQuery={ setSearchQuery } />
-      { status === 'loading' && <ActivityIndicator size='large' /> }
-      { status === 'error' && <Text>Error fetching jobs</Text> }
       <FlatList
         data={ filteredJobs }
         renderItem={ ( { item } ) => <JobCard job={ item } /> }
@@ -38,8 +37,8 @@ const JobsScreen = () => {
           if ( hasNextPage ) fetchNextPage();
         } }
         onEndReachedThreshold={ 0.5 }
-        ListEmptyComponent={ <ActivityIndicator size={ IconFonts.xl4 } color='#7786FC' /> }
-        ListFooterComponent={ isFetchingNextPage ? <ActivityIndicator size={ IconFonts.xl4 } color='#7786FC' /> : <Seperator /> }
+        ListEmptyComponent={ isLoading && <Spinner /> }
+        ListFooterComponent={ isFetchingNextPage ? <Spinner style={ { marginVertical: width * 0.05 } } /> : <Seperator size={ 0.055 } /> }
       />
     </View>
   );
@@ -48,12 +47,8 @@ const JobsScreen = () => {
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    backgroundColor: Colors.PRIMARY_BACKGROUND
+    backgroundColor: Colors.PRIMARY_BACKGROUND,
   },
-  title: {
-    fontSize: Fonts.xs,
-    fontFamily: 'Roboto-Regular',
-  }
 } );
 
 export default JobsScreen;

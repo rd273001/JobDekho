@@ -1,12 +1,14 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, View } from 'react-native';
+import { Text, StyleSheet, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Colors } from '../../constants/Colors';
-import { Fonts, IconFonts, width } from '../../constants/Styles';
+import { CommonStyles, Fonts, FontStyles, IconFonts, width } from '../../constants/Styles';
 import * as Linking from 'expo-linking';
 import { useJobsQuery } from '../../hooks/useJobsQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBookmarkAsync } from '../../redux-store/bookmarks/bookmarksSlice';
 import { Icon } from '@rneui/themed';
+import Spinner from '../../components/Spinner';
+import Detail from '../../components/Detail';
 
 const JobDetailsScreen = () => {
   // Extract job ID from search params
@@ -14,21 +16,12 @@ const JobDetailsScreen = () => {
   const dispatch = useDispatch();
   const bookmarks = useSelector( state => state.bookmarks.bookmarkedJobs );
   // retrieve jobs data
-  const { data, isLoading, error } = useJobsQuery();
+  const { data, isLoading } = useJobsQuery();
 
-  if ( isLoading ) {
-    return <ActivityIndicator size={ IconFonts.xl4 } />;
-  }
-
-  if ( error ) {
-    return <Text>Error loading job details.</Text>;
-  }
+  if ( isLoading ) return <Spinner />;
 
   // find job with matching ID
   const job = data.pages.flatMap( page => page.results ).find( job => String( job.id ) === id );
-
-  // when job is not found
-  if ( !job ) return <Text>Job not found!</Text>;
 
   const isBookmarked = bookmarks.includes( job.id );
 
@@ -49,7 +42,16 @@ const JobDetailsScreen = () => {
 
   // Decode the content
   const decodedContent = job?.content ? JSON.parse( job.content ) : {};
+  console.log( 'decodedContent:', decodedContent );
   const descriptionText = Object.values( decodedContent ).join( '\n' );
+
+  const detailsData = [
+    {
+      title: 'Company',
+      value: job.company_name,
+      icon: 'office-building',
+    }
+  ];
 
   return (
     <ScrollView contentContainerStyle={ styles.container }>
@@ -57,64 +59,41 @@ const JobDetailsScreen = () => {
         headerTitle: 'Job Details',
         headerRight: () => (
           <TouchableOpacity onPress={ handleBookmarkToggle }>
-            <Icon name={ isBookmarked ? 'bookmark' : 'bookmark-outline' } type='material-community' color={ isBookmarked ? '#ffc100' : Colors.light.tabIconDefault } size={ IconFonts.lg } />
+            <Icon name={ isBookmarked ? 'bookmark' : 'bookmark-outline' } type='material-community' color={ isBookmarked ? '#ffc100' : Colors.light.icon } size={ IconFonts.lg } />
           </TouchableOpacity> )
       } } />
 
       <Text style={ styles.title }>{ job?.title }</Text>
 
       <View style={ styles.detailsContainer }>
+        <Detail title='Company' value={ job?.company_name } icon='office-building' />
+        <Detail value={ job?.primary_details?.Place } icon='map-marker-outline' />
+        <Detail value={ job.primary_details.Salary.length < 2 ? 'N/A' : job.primary_details.Salary?.replace( /₹/g, '' ) } icon='currency-inr' />
+        <Detail title='Experience' value={ job?.primary_details?.Experience } icon='work-history' type='material' />
+
         <View style={ styles.flexCenter }>
-          <Icon name='office-building' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>Company: { job.company_name }</Text>
-        </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='map-marker-outline' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>{ job.primary_details.Place }</Text>
-        </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='currency-inr' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>{ job.primary_details.Salary.length < 2 ? 'N/A' : job.primary_details.Salary?.replace( /₹/g, '' ) }</Text>
-        </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='work-history' type='material' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>Exp : { job.primary_details?.Experience }</Text>
-        </View>
-        <View style={styles.flexCenter}>
-        <TouchableOpacity onPress={ handleContactNavigation } style={ styles.flexCenter }>
-          <Icon name='phone' type='material-community' size={ IconFonts.md } color='#007AFF' />
-          <Text style={ styles.contactLink }>
-            { job?.custom_link?.replace( 'tel:', '' ) }
-          </Text>
-        </TouchableOpacity>
-          <TouchableOpacity onPress={ handleWhatsAppNavigation } style={ styles.flexCenter }>
-          <Icon name='whatsapp' type='material-community' size={ IconFonts.md } color='#25D366' />
-          <Text style={ styles.contactLink }>
-            WhatsApp
-          </Text>
+          <TouchableOpacity onPress={ handleContactNavigation } style={ styles.flexCenter }>
+            <Icon name='phone' type='material-community' size={ IconFonts.base } color='#007AFF' />
+            <Text style={ styles.contactLink }>
+              { job?.custom_link?.replace( 'tel:', '' ) }
+            </Text>
           </TouchableOpacity>
-          </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='currency-inr' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>Qualification: { job.primary_details.Qualification }</Text>
+          <TouchableOpacity onPress={ handleWhatsAppNavigation } style={ styles.flexCenter }>
+            <Icon name='whatsapp' type='material-community' size={ IconFonts.base } color='#25D366' />
+            <Text style={ styles.contactLink }>
+              WhatsApp
+            </Text>
+          </TouchableOpacity>
         </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='eye' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>Job Role: { job.job_role }</Text>
-        </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='account-multiple-plus-outline' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>Openings: { job.openings_count }</Text>
-        </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='file-document-edit-outline' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>Applications: { job.num_applications }</Text>
-        </View>
-        <View style={ styles.flexCenter }>
-          <Icon name='eye-outline' type='material-community' size={ IconFonts.md } color={ Colors.light.tabIconDefault } />
-          <Text style={ styles.detail }>Views: { job.views }</Text>
-        </View>
-        <Text style={ styles.detail }>Description: { descriptionText }</Text>
+
+        <Detail title='Qualification' value={ job?.primary_details?.Qualification } icon='book-education-outline' />
+        <Detail title='Job Role' value={ job?.job_role } icon='person-pin' type='material' />
+        <Detail title='Openings' value={ job?.openings_count } icon='account-multiple-plus-outline' />
+        <Detail title='Applications' value={ job?.num_applications } icon='file-document-edit-outline' />
+        <Detail title='Views' value={ job?.views } icon='eye-outline' />
+
+        <Text style={ [styles.detail, styles.description] }>Description:</Text>
+        <Text style={ [styles.detail, styles.descriptionText] }>{ descriptionText }</Text>
       </View>
 
     </ScrollView>
@@ -128,7 +107,7 @@ const styles = StyleSheet.create( {
     padding: width * 0.03
   },
   title: {
-    fontSize: Fonts.md,
+    fontSize: Fonts.base,
     fontFamily: 'Roboto-Bold',
     marginBottom: width * 0.04
   },
@@ -136,24 +115,24 @@ const styles = StyleSheet.create( {
     gap: width * 0.025
   },
   flexCenter: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: width * 0.02,
-  },
-  details: {
-    fontSize: Fonts.sm,
+    ...CommonStyles.flexRowCenterCenter,
+    justifyContent: 'flex-start',
+    gap: width * 0.01,
   },
   detail: {
     flex: 1,
-    fontSize: Fonts.md,
-    fontFamily: 'Roboto-Regular',
+    ...FontStyles.base,
   },
   contactLink: {
     color: 'blue',
-    fontFamily: 'Roboto-Regular',
-    fontSize: Fonts.md
+    ...FontStyles.base
   },
+  description: {
+    fontFamily: 'Roboto-Bold'
+  },
+  descriptionText: {
+    marginTop: -width * 0.01
+  }
 } );
 
 export default JobDetailsScreen;

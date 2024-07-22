@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, ScrollView, View, ActivityIndicator } from 'react-native';
 import { useSelector } from 'react-redux';
-import { Fonts, Seperator, width } from '../../constants/Styles';
+import { CommonStyles, Fonts, IconFonts, Seperator, width } from '../../constants/Styles';
 import { useJobsQuery } from '../../hooks/useJobsQuery';
 import JobCard from '../../components/JobCard';
 import { Colors } from '../../constants/Colors';
@@ -9,14 +9,10 @@ import { Colors } from '../../constants/Colors';
 const BookmarksScreen = () => {
   // using latest updated data
   const bookmarks = useSelector( ( state ) => state.bookmarks.bookmarkedJobs );
-  const { data, isLoading, error } = useJobsQuery();
+  const { data, isLoading } = useJobsQuery();
 
-  if ( isLoading ) {
-    return <ActivityIndicator size='large' />;
-  }
-  if ( error ) {
-    return <Text>Error loading job details.</Text>;
-  }
+  if ( isLoading ) <ActivityIndicator size={ IconFonts.xl4 } style={ CommonStyles.flexColCenterCenter } />;
+
   const jobs = data.pages.flatMap( page => page.results );
   // jobs data retrieved so retrieve bookmarked jobs from it
   const bookmarkedJobs = jobs.filter( job => bookmarks.includes( job.id ) );
@@ -25,10 +21,10 @@ const BookmarksScreen = () => {
     <ScrollView contentContainerStyle={ styles.container }>
       { bookmarkedJobs.length > 0 ? (
         bookmarkedJobs.map( ( job ) => (
-          <View key={job.id}>
-          <JobCard job={ job } />
+          <View key={ job.id }>
+            <JobCard job={ job } />
             <Seperator />
-            </View>
+          </View>
         ) )
       ) : (
         <Text style={ styles.text }>No bookmarks added yet.</Text>

@@ -12,7 +12,7 @@ const JobSearchBar = ( { searchQuery, setSearchQuery } ) => {
       value={ searchQuery }
       searchIcon={ <Icon name='search' color='#7786FC' /> }
       containerStyle={ styles.container }
-      inputContainerStyle={ { backgroundColor: '#fff', borderRadius: width * 0.03 } }
+      inputContainerStyle={ styles.inputContainer }
       inputStyle={ { color: '#000' } }
     />
   );
@@ -23,15 +23,16 @@ const styles = StyleSheet.create( {
     backgroundColor: 'transparent',
     borderTopWidth: 0,
     borderBottomWidth: 0,
-    padding: 0,
-    marginHorizontal: width * 0.035,
+    padding: width * 0.005,
+    marginHorizontal: width * 0.03,
     marginVertical: width * 0.03,
-    borderRadius: width * 0.04,
-    elevation: 10
+    borderRadius: width,
+    overflow: 'hidden',
+    elevation: width * 0.03,
   },
   inputContainer: {
     backgroundColor: '#FFFFFF',
-    borderRadius: width * 0.03
+    borderRadius: width
   }
 } );
 

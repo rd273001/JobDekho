@@ -5,7 +5,8 @@ export const { width, height } = Dimensions.get( 'screen' );
 export const Fonts = {
   xs2: width * 0.027,
   xs: width * 0.03,
-  sm: width * 0.04,
+  sm: width * 0.037,
+  base: width * 0.042,
   md: width * 0.05,
   lg: width * 0.06,
   xl: width * 0.07,
@@ -15,6 +16,7 @@ export const Fonts = {
 
 export const IconFonts = {
   sm: width * 0.04,
+  base: width * 0.05,
   md: width * 0.06,
   lg: width * 0.07,
   xl: width * 0.08,
@@ -26,7 +28,7 @@ export const IconFonts = {
 export const FontStyles = {
   base: {
     fontFamily: 'Roboto-Regular',
-    fontSize: Fonts.sm
+    fontSize: Fonts.base
   }
 };
 
