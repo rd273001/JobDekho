@@ -42,16 +42,8 @@ const JobDetailsScreen = () => {
 
   // Decode the content
   const decodedContent = job?.content ? JSON.parse( job.content ) : {};
-  console.log( 'decodedContent:', decodedContent );
+  // console.log( 'decodedContent:', decodedContent );
   const descriptionText = Object.values( decodedContent ).join( '\n' );
-
-  const detailsData = [
-    {
-      title: 'Company',
-      value: job.company_name,
-      icon: 'office-building',
-    }
-  ];
 
   return (
     <ScrollView contentContainerStyle={ styles.container }>

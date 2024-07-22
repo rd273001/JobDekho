@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
-import { IconFonts, Seperator, width } from '../../../constants/Styles';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { Seperator, width } from '../../../constants/Styles';
 import { Colors } from '../../../constants/Colors';
 import { useJobsQuery } from '../../../hooks/useJobsQuery';
 import JobCard from '../../../components/JobCard';
