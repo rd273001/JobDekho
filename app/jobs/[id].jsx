@@ -40,10 +40,9 @@ const JobDetailsScreen = () => {
     Linking.openURL( job.custom_link );
   };
 
-  // Decode the content
-  const decodedContent = job?.content ? JSON.parse( job.content ) : {};
-  console.log( 'decodedContent:', job );
-  const descriptionText = Object.values( decodedContent ).join( '\n' );
+  // content
+  // const content = job?.contentV3.V3;
+  // console.log( 'ContentV3 => ', content );
 
   return (
     <ScrollView contentContainerStyle={ styles.container }>
@@ -84,8 +83,13 @@ const JobDetailsScreen = () => {
         <Detail title='Applications' value={ job?.num_applications } icon='file-document-edit-outline' />
         <Detail title='Views' value={ job?.views } icon='eye-outline' />
 
-        <Text style={ [styles.detail, styles.description] }>Description:</Text>
-        <Text style={ [styles.detail, styles.descriptionText] }>{ descriptionText }</Text>
+        <Text style={ [styles.detail, styles.description] }>Description:-</Text>
+        {
+          job?.contentV3?.V3?.length > 0 ? job.contentV3.V3.map( ( item, index ) => (
+            <Text key={ index } style={ [styles.detail, styles.descriptionText] }><Text style={ [styles.detail, styles.descriptionText, styles.descriptionHeading ] }>{ `${ item.field_key }:\n` }</Text>{`${ item.field_name } : ${ item.field_value.replace( /:/g, ' : ' ) }` }</Text>
+          ) )
+            : <Text style={ [styles.detail, styles.descriptionText] }>N/A</Text>
+        }
       </View>
 
     </ScrollView>
@@ -120,7 +124,10 @@ const styles = StyleSheet.create( {
     ...FontStyles.base
   },
   description: {
-    fontFamily: 'Roboto-Bold'
+    fontFamily: 'Roboto-Bold',
+  },
+  descriptionHeading: {
+    fontFamily: 'Roboto-Medium',
   },
   descriptionText: {
     marginTop: -width * 0.01
