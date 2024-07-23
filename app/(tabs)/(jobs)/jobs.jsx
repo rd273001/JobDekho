@@ -33,9 +33,7 @@ const JobsScreen = () => {
         ListHeaderComponent={ <Seperator /> }
         keyExtractor={ ( item ) => item.id.toString() }
         ItemSeparatorComponent={ <Seperator size={ 0.04 } /> }
-        onEndReached={ () => {
-          if ( hasNextPage ) fetchNextPage();
-        } }
+        onEndReached={ hasNextPage && fetchNextPage }
         onEndReachedThreshold={ 0.5 }
         ListEmptyComponent={ isLoading && <Spinner /> }
         ListFooterComponent={ isFetchingNextPage ? <Spinner style={ { marginVertical: width * 0.05 } } /> : <Seperator size={ 0.055 } /> }

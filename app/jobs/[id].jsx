@@ -42,7 +42,7 @@ const JobDetailsScreen = () => {
 
   // Decode the content
   const decodedContent = job?.content ? JSON.parse( job.content ) : {};
-  // console.log( 'decodedContent:', decodedContent );
+  console.log( 'decodedContent:', job );
   const descriptionText = Object.values( decodedContent ).join( '\n' );
 
   return (
