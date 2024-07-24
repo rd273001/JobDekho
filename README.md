@@ -2,7 +2,7 @@
 
 ## Download App
 
-[Click to download the apk ⬇️](https://expo.dev/artifacts/eas/7mDwc1Da74rvpGzkpVBdoV.apk)
+[![Install JobDekho App](https://img.shields.io/badge/Install_JobDekho_App_⬇️-a900ff?style=for-the-badge)](https://drive.google.com/uc?export=download&id=13hYgcIe3F9DlKBuySXvsx8UuH3dN967w)
 OR
 [Click to use the App on Expo Go by scanning QR code](https://expo.dev/accounts/ravi-dubey/projects/jobdekho/builds/3378d487-e56b-4fcf-84d8-23f6c6e79749)
 
