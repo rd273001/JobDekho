@@ -14,7 +14,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ravidubey.jobdekho"
+      "bundleIdentifier": "com.ravidubey.jobdekho",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
