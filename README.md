@@ -1,8 +1,10 @@
 # JobDekho - Your Ultimate Job Searching App
 
-## Demo
+## Download App
 
-[App demo video](https://drive.google.com/file/d/1ySrqrUuLMh1ZDma2zdO6GfYpnDaRMM5X/view?usp=drive_link)
+[Click to download the apk ⬇️](https://expo.dev/artifacts/eas/7mDwc1Da74rvpGzkpVBdoV.apk)
+OR
+[Click to use the App on Expo Go by scanning QR code](https://expo.dev/accounts/ravi-dubey/projects/jobdekho/builds/3378d487-e56b-4fcf-84d8-23f6c6e79749)
 
 ## Overview
 
