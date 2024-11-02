@@ -53,4 +53,4 @@ Contributions are welcome! If you find any bugs or have suggestions for improvem
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Screenshots
-<img src="https://github.com/rd273001/JobDekho/blob/main/Screenshot%202024-11-02%20170133.png" style="width: 100%;" />
+<img src="https://github.com/rd273001/JobDekho/blob/main/Screenshot%202024-11-02%20170133.png" style="width: 640px;" />
