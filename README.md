@@ -4,11 +4,14 @@
 
 [![Install JobDekho App](https://img.shields.io/badge/Install_JobDekho_App_⬇️-a900ff?style=for-the-badge)](https://drive.google.com/uc?export=download&id=13hYgcIe3F9DlKBuySXvsx8UuH3dN967w)
 OR
-[Click to use the App on Expo Go by scanning QR code](https://expo.dev/accounts/ravi-dubey/projects/jobdekho/builds/3378d487-e56b-4fcf-84d8-23f6c6e79749)
+[Click to use the App on Expo Go by scanning the QR code](https://expo.dev/accounts/ravi-dubey/projects/jobdekho/builds/3378d487-e56b-4fcf-84d8-23f6c6e79749)
+
+### Screenshots
+<img src="https://github.com/rd273001/JobDekho/blob/main/Screenshot%202024-11-02%20170133.png" style="width: 200px;" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="https://github.com/rd273001/JobDekho/blob/main/Screenshot%202024-11-02%20170147.png" style="width: 200px;" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="https://github.com/rd273001/JobDekho/blob/main/Screenshot%202024-11-02%20170218.png" style="width: 200px;" />
 
 ## Overview
 
-JobDekho is a mobile application built with Expo React Native that helps users find their ideal job. It provides a user-friendly interface for searching job listings, and applying for positions.
+JobDekho is a mobile application built with Expo React Native that helps users find their ideal job. It provides a user-friendly interface for searching job listings and applying for positions.
 
 ## Features
 
@@ -51,6 +54,3 @@ Contributions are welcome! If you find any bugs or have suggestions for improvem
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Screenshots
-<img src="https://github.com/rd273001/JobDekho/blob/main/Screenshot%202024-11-02%20170133.png" style="width: 400px;" />
